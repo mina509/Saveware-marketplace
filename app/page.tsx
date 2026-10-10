@@ -3,7 +3,7 @@ import { getSite, siteUrl } from "@/lib/site";
 import { categoriesFor, featuredBySeller } from "@/lib/queries";
 import { copy } from "@/lib/copy";
 import ProductCard from "@/components/ProductCard";
-import { Check, Pill } from "@/components/Icons";
+import { Check, Drop, Pulse } from "@/components/Icons";
 
 export const dynamic = "force-dynamic";
 
@@ -45,7 +45,7 @@ export default async function Home() {
           <div className="sec-head"><h2>Shop by category</h2></div>
           <div className="cat-grid">
             {cats.map((cat) => (
-              <Link key={cat.id} href={`/category/${cat.slug}`} className="cat"><span><Pill /></span>{cat.name}</Link>
+              <Link key={cat.id} href={`/category/${cat.slug}`} className="cat"><span>{cat.site_id === "kareo6" ? <Pulse /> : <Drop />}</span>{cat.name}</Link>
             ))}
           </div>
         </section>

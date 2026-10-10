@@ -9,7 +9,7 @@ export type Site = {
   theme: Theme;
 };
 
-export type Category = { id: string; name: string; slug: string; site_id: string | null; sort_order: number };
+export type Category = { id: string; name: string; slug: string; site_id: string | null; sort_order: number; shared: boolean };
 
 export type Product = {
   id: string;

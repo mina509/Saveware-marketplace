@@ -4,7 +4,10 @@ import type { Category, Product } from "./types";
 const PRODUCT_FIELDS = "*, sellers(name, slug)";
 
 export async function categoriesFor(siteId: string): Promise<Category[]> {
-  const { data } = await db().from("categories").select("*").eq("site_id", siteId).order("sort_order");
+  const { data } = await db().from("categories").select("*")
+    .or(`site_id.eq.${siteId},shared.eq.true`).order("sort_order");
+  // Own categories first, shared ones from the sister brand after
+  (data ?? []).sort((a, b) => Number(a.site_id !== siteId) - Number(b.site_id !== siteId) || a.sort_order - b.sort_order);
   return (data ?? []) as Category[];
 }
 
