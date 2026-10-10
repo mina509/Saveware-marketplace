@@ -42,3 +42,9 @@ export async function searchProducts(q: string, sellerSlug?: string): Promise<Pr
   const { data } = await query.order("name").limit(60);
   return (data ?? []) as Product[];
 }
+
+export async function allActiveProductsBySeller(sellerId: string): Promise<Product[]> {
+  const { data } = await db().from("products").select(PRODUCT_FIELDS)
+    .eq("seller_id", sellerId).eq("status", "active").order("name").limit(5000);
+  return (data ?? []) as Product[];
+}

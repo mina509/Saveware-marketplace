@@ -7,6 +7,8 @@ import { Check, Drop, Pulse } from "@/components/Icons";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 const promises = [
   ["Verified sellers", "Every seller and product is reviewed before it goes live."],
   ["Secure checkout", "Card, Apple Pay and Google Pay."],

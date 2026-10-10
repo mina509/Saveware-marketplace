@@ -6,6 +6,7 @@ export type Site = {
   name: string;
   seller_id: string;
   sister_site_id: string | null;
+  canonical_url?: string | null;
   theme: Theme;
 };
 

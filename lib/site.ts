@@ -22,6 +22,12 @@ export const getSite = cache(async (): Promise<{ site: Site; sister: Site | null
   return { site, sister, all };
 });
 
+/** The official address of a brand, e.g. https://www.saveware.co.uk */
 export function siteUrl(s: Site) {
-  return `https://${s.domain}`;
+  return (s.canonical_url ?? `https://${s.domain}`).replace(/\/$/, "");
+}
+
+/** Which brand's site is the official home of a seller's products. */
+export function siteForSeller(all: Site[], sellerId: string, fallback: Site) {
+  return all.find((s) => s.seller_id === sellerId) ?? fallback;
 }

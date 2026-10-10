@@ -2,7 +2,7 @@ import { searchProducts } from "@/lib/queries";
 import ProductCard from "@/components/ProductCard";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Search" };
+export const metadata = { title: "Search", robots: { index: false, follow: true } };
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string; seller?: string }> }) {
   const { q = "", seller } = await searchParams;

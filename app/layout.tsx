@@ -11,6 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const { site } = await getSite();
   const c = copy[site.id];
   return {
+    metadataBase: new URL(siteUrl(site)),
+    openGraph: { siteName: site.name, type: "website", locale: "en_GB" },
     title: { default: `${site.name} — ${c?.tagline.toLowerCase() ?? ""}`, template: `%s | ${site.name}` },
     description: c?.intro,
     icons: { icon: `/logos/${site.id}.svg` },
